@@ -85,6 +85,9 @@ func (c Config) Build(logger *zap.SugaredLogger) (operator.Operator, error) {
 	// Continue watching logs until cancelled
 	args = append(args, "--follow")
 
+	// Add unprintable characters (prevents loss of information if log lines contain \n\r)
+	args = append(args, "--allow")
+
 	switch c.StartAt {
 	case "end":
 	case "beginning":
